@@ -1,50 +1,197 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-   <head>
-      <title>Player Tracking Bot</title>
-   </head>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3mobile.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
+<body style="max-width:600px">
 
-   <script>
-    function helloUniverse () {
-        console.log('Hello Universe');
-    }
+<nav class="w3-sidebar w3-bar-block w3-card" id="mySidebar">
+<div class="w3-container w3-theme-d2">
+  <span onclick="closeSidebar()" class="w3-button w3-display-topright w3-large">X</span>
+  <br>
+</div>
+<a onclick="showInGameTracking()" class="w3-bar-item w3-button" href="#">In Game Tracking </a>
+<a onclick="showSetPiece()" class="w3-bar-item w3-button" href="#">Set Piece </a>
+<a onclick="showStartStop()" class="w3-bar-item w3-button" href="#">Start/Stop</a>
+<a onclick="showPlayerDetails()" class="w3-bar-item w3-button" href="#">Player Details</a>
+<a onclick="showGameDetails()" class="w3-bar-item w3-button" href="#">Game Details</a>
+</nav>
 
-    function helloWorld() {
-       console.log('hello world');
-    }
+<header class="w3-bar w3-card w3-theme">
+  <button class="w3-bar-item w3-button w3-xxxlarge w3-hover-theme" onclick="openSidebar()">&#9776;</button>
+  <h1 class="w3-bar-item">Player Tracker</h1>
+</header>
 
-    function loadDoc() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML = this.responseText;
-            }
-        };
-        xhttp.open("GET", "http://www.microsoft.com", true);
-        xhttp.send();
-        }
+<!-- <nav class="w3-bar-block w3-card" id="inGameTracking"></nav> -->
+<div class="w3-container" id="inGameTracking">
+    <div class="w3-cell-row">
+            <h4>Passes</h4>
+            <input type="button" class="w3-button w3-black" value="Successful" onclick="console.log('clicked')">
+            <input type="button" class="w3-button w3-black" value="Attempted" onclick="console.log('clicked')">
+    </div>  
+    <div class="w3-cell-row">
+            <h4>Tackles</h4>
+                <input type="button" class="w3-button w3-black" value="Successful" onclick="console.log('clicked')">
+                <input type="button" class="w3-button w3-black" value="Attempted" onclick="console.log('clicked')">
+    </div> 
+    <div class="w3-cell-row">
+            <h4>Dribbles</h4>
+                <input type="button" class="w3-button w3-black" value="Successful" onclick="console.log('clicked')">
+                <input type="button" class="w3-button w3-black" value="Attempted" onclick="console.log('clicked')">
+    </div> 
+    <div class="w3-cell-row">
+            <h4>Shots</h4>
+                <input type="button" class="w3-button w3-black" value="On Frame" onclick="console.log('clicked')">
+                <input type="button" class="w3-button w3-black" value="Off Frame" onclick="console.log('clicked')">
+    </div> 
+    <div class="w3-cell-row">
+            <h4>Score</h4>
+                <input type="button" class="w3-button w3-black" value="Goal" onclick="console.log('clicked')">
+                <input type="button" class="w3-button w3-black" value="Assist" onclick="console.log('clicked')">
+    </div> 
+</div>
 
-    var buttonText = "Click me to make stuff happen";
-   </script>
+<!-- bottons for Free Kick, Corner, Penalty, Fouls -->
+<div class="w3-container" id="setPiece">
+        <div class="w3-cell-row">
+                <h4>Set Piece</h4>
+                    <input type="button" class="w3-button w3-black" value="Free Kick" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Corner" onclick="console.log('clicked')">
+        </div>  
+        <div class="w3-cell-row">
+                <h4>Penalty</h4>
+                    <input type="button" class="w3-button w3-black" value="Scored" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Missed" onclick="console.log('clicked')">
+        </div> 
+        <div class="w3-cell-row">
+                <h4>Fouls</h4>
+                    <input type="button" class="w3-button w3-black" value="Fouled" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Committed Foul" onclick="console.log('clicked')">
+        </div> 
+    </div>
 
-   <body>
-       
-       <center>
-            <!-- <div style="height: 50px;">
-                <img src='https://static1.squarespace.com/static/57cd915f725e25df3efca97c/t/58d54c62ff7c50c5d2eeed12/1490373741041/P5+On+Site+Clinics.jpg'>
-            </div> -->
-            <div style="height: 502px;">
-                    <button type="button"
-                    onclick="helloWorld(); helloUniverse(); loadDoc()">
-                    {buttonText}</button>
-                <!-- <iframe width="800" height="600" src="https://msit.powerbi.com/view?r=eyJrIjoiODkyYWJkNmEtMzg2Ny00M2U4LTk5NWEtMjkwZTEzZWVkYjRmIiwidCI6IjcyZjk4OGJmLTg2ZjEtNDFhZi05MWFiLTJkN2NkMDExZGI0NyIsImMiOjV9" frameborder="0" allowFullScreen="true"></iframe> -->
-         </div>
-            <!-- <div style="height: 502px;">
-                   <iframe src='https://webchat.botframework.com/embed/Player_Tracker?s=mlDHbkoGVSM.cwA.MKc.1sTLuYI-4DqjOedlycJofOMqDb1DRiZKCxHRy9p_WUw' width="700" height="400"></iframe>
-            </div> -->
-            <div style="height: 50px;">
-                <a href='https://join.skype.com/bot/cfdd6b88-a05e-47fd-8938-09fecac50683'><img src='https://dev.botframework.com/Client/Images/Add-To-Skype-Buttons.png'/></a>
+<!-- bottons for KickOff, Final Whistle, Substitutions -->
+<div class="w3-container" id="startStop">
+        <div class="w3-cell-row">
+                <h4>Substitution</h4>
+                    <input type="button" class="w3-button w3-black" value="In" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Out" onclick="console.log('clicked')">
+        </div>  
+        <div class="w3-cell-row">
+                <h4>Whistle</h4>
+                    <input type="button" class="w3-button w3-black" value="Kick Off" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Final Whistle" onclick="console.log('clicked')">
+        </div> 
+    </div>
+<!-- Input Player Details -->
+<div class="w3-container" id="playerDetails">
+        <div class="w3-bar w3-light-grey">
+            <h4>Player Name</h4>
+            <input id="playerName" type="text" class="w3-bar-item w3-input">
             </div>
-        </center>
-   </body>
-</html>
+        <div class="w3-bar w3-light-grey">
+            <h4>Player Number</h4>
+            <input id="playerNumber" type="text" class="w3-bar-item w3-input">
+            </div> 
+        <div class="w3-bar w3-light-grey">
+            <h4>Player Team</h4>
+            <input id="playerTeam" type="text" class="w3-bar-item w3-input" >
+             </div>
+        <div class="w3-bar w3-light-grey">
+            <h4>Player Club</h4>
+            <input id="playerClub" type="text" class="w3-bar-item w3-input" >
+            </div> 
+    </div>
+
+<!-- Input Game Details -->
+<div class="w3-container" id="gameDetails">
+        <div class="w3-cell-row">
+                <h4>Opponent</h4>
+                    <input type="button" class="w3-button w3-black" value="Team" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Club" onclick="console.log('clicked')">
+        </div>  
+        <div class="w3-cell-row">
+                <h4>Home/Away</h4>
+                    <input type="button" class="w3-button w3-black" value="Home" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Away" onclick="console.log('clicked')">
+        </div> 
+        <div class="w3-cell-row">
+                <h4>Venue</h4>
+                    <input type="button" class="w3-button w3-black" value="Location" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Field Number" onclick="console.log('clicked')">
+        </div> 
+    </div>
+
+<footer class="w3-container w3-theme w3-margin-top">
+  <h4>Footer</h4>
+</footer>
+
+<script>
+var userData = {playerName: "Name..", playerNumber: "Number..", playerTeam: "Team..", playerClub: "Club..",
+    opponentTeam: "Team..", opponentClub: "Club..", gameLocation: "Location..", gameField: "Field..", playerTeamHomeAway: "Home.." };
+document.getElementById("playerName").placeholder = userData.playerName;
+document.getElementById("playerNumber").placeholder = userData.playerNumber;
+document.getElementById("playerTeam").placeholder = userData.playerTeam;
+document.getElementById("playerClub").placeholder = userData.playerClub;
+document.getElementById("opponentTeam").placeholder = userData.opponentTeam;
+document.getElementById("opponentClub").placeholder = userData.opponentClub;
+document.getElementById("gameLocation").placeholder = userData.gameLocation;
+document.getElementById("gameField").placeholder = userData.gameField;
+document.getElementById("playerTeamHomeAway").placeholder = userData.playerTeamHomeAway;
+
+
+
+closeSidebar();
+showInGameTracking();
+
+function openSidebar() {
+    document.getElementById("mySidebar").style.display = "block";
+}
+function closeSidebar() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+function showInGameTracking() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("inGameTracking").style.display = "block";
+    document.getElementById("setPiece").style.display = "none";
+    document.getElementById("startStop").style.display = "none";
+    document.getElementById("playerDetails").style.display = "none";
+    document.getElementById("gameDetails").style.display = "none";
+}
+function showSetPiece() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("inGameTracking").style.display = "none";
+    document.getElementById("setPiece").style.display = "block";
+    document.getElementById("startStop").style.display = "none";
+    document.getElementById("playerDetails").style.display = "none";
+    document.getElementById("gameDetails").style.display = "none";
+}
+function showStartStop() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("inGameTracking").style.display = "none";
+    document.getElementById("setPiece").style.display = "none";
+    document.getElementById("startStop").style.display = "block";
+    document.getElementById("playerDetails").style.display = "none";
+    document.getElementById("gameDetails").style.display = "none";
+}
+function showPlayerDetails() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("inGameTracking").style.display = "none";
+    document.getElementById("setPiece").style.display = "none";
+    document.getElementById("startStop").style.display = "none";
+    document.getElementById("playerDetails").style.display = "block";
+    document.getElementById("gameDetails").style.display = "none";
+}
+function showGameDetails() {
+    document.getElementById("mySidebar").style.display = "none";
+    document.getElementById("inGameTracking").style.display = "none";
+    document.getElementById("setPiece").style.display = "none";
+    document.getElementById("startStop").style.display = "none";
+    document.getElementById("playerDetails").style.display = "none";
+    document.getElementById("gameDetails").style.display = "block";
+}
+</script>
+
+</body>
+
