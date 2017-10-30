@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>Player Tracker</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3mobile.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
@@ -24,50 +24,61 @@
 </header>
 
 <!-- <nav class="w3-bar-block w3-card" id="inGameTracking"></nav> -->
+<!-- buttons for Passes, Tackles, Dribbles & Goals -->
 <div class="w3-container" id="inGameTracking">
-    <div class="w3-cell-row">
+    <div class="w3-cell-row w3-red">
             <h4>Passes</h4>
-            <input type="button" class="w3-button w3-black" value="Successful" onclick="console.log('clicked')">
-            <input type="button" class="w3-button w3-black" value="Attempted" onclick="console.log('clicked')">
-    </div>  
+            <!-- <input type="button" id="successfulPassButton" class="w3-button w3-black w3-border" value="Successful" onclick="successfulPass()"> -->
+            <input type="button" id="successfulPassButton" class="w3-button w3-black w3-border" value="Successful" 
+            onclick="postStatusUpdate('successfulPass','successfulPassButton', 'Successful');">
+            <input type="button" id="attemptedPassButton" class="w3-button w3-black w3-border" value="Attempted" 
+            onclick="postStatusUpdate('attemptedPass','attemptedPassButton', 'Attempted');">
+        </div>  
     <div class="w3-cell-row">
             <h4>Tackles</h4>
-                <input type="button" class="w3-button w3-black" value="Successful" onclick="console.log('clicked')">
-                <input type="button" class="w3-button w3-black" value="Attempted" onclick="console.log('clicked')">
-    </div> 
+            <input type="button" class="w3-button w3-black  w3-border" value="Successful" 
+               id="successfulTackleButton" onclick="postStatusUpdate('successfulTackle','successfulTackleButton', 'Successful');">
+            <input type="button" class="w3-button w3-black  w3-border" value="Attempted" 
+               id="attemptedTackleButton" onclick="postStatusUpdate('attemptedTackle','attemptedTackleButton', 'Attempted');">
+        </div> 
     <div class="w3-cell-row">
             <h4>Dribbles</h4>
-                <input type="button" class="w3-button w3-black" value="Successful" onclick="console.log('clicked')">
-                <input type="button" class="w3-button w3-black" value="Attempted" onclick="console.log('clicked')">
-    </div> 
+            <input type="button" class="w3-button w3-black  w3-border" value="Successful" 
+                id="successfulDribbleButton" onclick="postStatusUpdate('successfulDribble','successfulDribbleButton', 'Successful');">
+            <input type="button" class="w3-button w3-black  w3-border" value="Attempted" 
+                id="attemptedDribbleButton" onclick="postStatusUpdate('attemptedDribble','attemptedDribbleButton', 'Attempted');">
+        </div> 
     <div class="w3-cell-row">
             <h4>Shots</h4>
-                <input type="button" class="w3-button w3-black" value="On Frame" onclick="console.log('clicked')">
-                <input type="button" class="w3-button w3-black" value="Off Frame" onclick="console.log('clicked')">
-    </div> 
+            <input type="button" class="w3-button w3-black  w3-border" value="On Frame" 
+                id="shotOnFrameButton" onclick="postStatusUpdate('shotOnFrame','shotOnFrameButton', 'On Frame');">
+            <input type="button" class="w3-button w3-black  w3-border" value="Off Frame" 
+                id="shotOffFrameButton" onclick="postStatusUpdate('shotOffFrame','shotOffFrameButton', 'Off Frame');">
+        </div> 
     <div class="w3-cell-row">
             <h4>Score</h4>
-                <input type="button" class="w3-button w3-black" value="Goal" onclick="console.log('clicked')">
-                <input type="button" class="w3-button w3-black" value="Assist" onclick="console.log('clicked')">
-    </div> 
-</div>
-
+            <input type="button" class="w3-button w3-black  w3-border" value="Goal" 
+                id="goalButton" onclick="postStatusUpdate('goal','goalButton', 'Goal');">
+            <input type="button" class="w3-button w3-black  w3-border" value="Assist" 
+                id="assistButton" onclick="postStatusUpdate('assist','assistButton', 'Assist');">
+        </div> 
+    </div>
 <!-- bottons for Free Kick, Corner, Penalty, Fouls -->
 <div class="w3-container" id="setPiece">
         <div class="w3-cell-row">
                 <h4>Set Piece</h4>
-                    <input type="button" class="w3-button w3-black" value="Free Kick" onclick="console.log('clicked')">
-                    <input type="button" class="w3-button w3-black" value="Corner" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Free Kick" onclick="freeKick()">
+                    <input type="button" class="w3-button w3-black" value="Corner" onclick="corner()">
         </div>  
         <div class="w3-cell-row">
                 <h4>Penalty</h4>
-                    <input type="button" class="w3-button w3-black" value="Scored" onclick="console.log('clicked')">
-                    <input type="button" class="w3-button w3-black" value="Missed" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Scored" onclick="penaltyScored()">
+                    <input type="button" class="w3-button w3-black" value="Missed" onclick="penaltyMissed()">
         </div> 
         <div class="w3-cell-row">
                 <h4>Fouls</h4>
-                    <input type="button" class="w3-button w3-black" value="Fouled" onclick="console.log('clicked')">
-                    <input type="button" class="w3-button w3-black" value="Committed Foul" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Fouled" onclick="fouled()">
+                    <input type="button" class="w3-button w3-black" value="Committed Foul" onclick="foulCommitted()">
         </div> 
     </div>
 
@@ -75,53 +86,58 @@
 <div class="w3-container" id="startStop">
         <div class="w3-cell-row">
                 <h4>Substitution</h4>
-                    <input type="button" class="w3-button w3-black" value="In" onclick="console.log('clicked')">
-                    <input type="button" class="w3-button w3-black" value="Out" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="In" onclick="substitutedIn()">
+                    <input type="button" class="w3-button w3-black" value="Out" onclick="substitutedOut()">
         </div>  
         <div class="w3-cell-row">
                 <h4>Whistle</h4>
-                    <input type="button" class="w3-button w3-black" value="Kick Off" onclick="console.log('clicked')">
-                    <input type="button" class="w3-button w3-black" value="Final Whistle" onclick="console.log('clicked')">
+                    <input type="button" class="w3-button w3-black" value="Kick Off" onclick="kickOff()">
+                    <input type="button" class="w3-button w3-black" value="Final Whistle" onclick="finalWhistle()">
         </div> 
     </div>
 <!-- Input Player Details -->
 <div class="w3-container" id="playerDetails">
         <div class="w3-bar w3-light-grey">
             <h4>Player Name</h4>
-            <input id="playerName" type="text" class="w3-bar-item w3-input">
+            <input id="playerName" type="text" class="w3-bar-item w3-input w3-border">
             </div>
         <div class="w3-bar w3-light-grey">
             <h4>Player Number</h4>
-            <input id="playerNumber" type="text" class="w3-bar-item w3-input">
+            <input id="playerNumber" type="text" class="w3-bar-item w3-input w3-border">
             </div> 
         <div class="w3-bar w3-light-grey">
             <h4>Player Team</h4>
-            <input id="playerTeam" type="text" class="w3-bar-item w3-input" >
+            <input id="playerTeam" type="text" class="w3-bar-item w3-input w3-border" >
              </div>
         <div class="w3-bar w3-light-grey">
             <h4>Player Club</h4>
-            <input id="playerClub" type="text" class="w3-bar-item w3-input" >
+            <input id="playerClub" type="text" class="w3-bar-item w3-input w3-border" >
             </div> 
     </div>
 
 <!-- Input Game Details -->
 <div class="w3-container" id="gameDetails">
-        <div class="w3-cell-row">
-                <h4>Opponent</h4>
-                    <input type="button" class="w3-button w3-black" value="Team" onclick="console.log('clicked')">
-                    <input type="button" class="w3-button w3-black" value="Club" onclick="console.log('clicked')">
-        </div>  
-        <div class="w3-cell-row">
-                <h4>Home/Away</h4>
-                    <input type="button" class="w3-button w3-black" value="Home" onclick="console.log('clicked')">
-                    <input type="button" class="w3-button w3-black" value="Away" onclick="console.log('clicked')">
-        </div> 
-        <div class="w3-cell-row">
-                <h4>Venue</h4>
-                    <input type="button" class="w3-button w3-black" value="Location" onclick="console.log('clicked')">
-                    <input type="button" class="w3-button w3-black" value="Field Number" onclick="console.log('clicked')">
-        </div> 
-    </div>
+        <div class="w3-bar w3-light-grey">
+            <h4>Player Team Home or Away</h4>
+            <input id="playerTeamHomeAway" type="text" class="w3-bar-item w3-input w3-border">
+            </div>
+        <div class="w3-bar w3-light-grey">
+            <h4>Opponent Team</h4>
+            <input id="opponentTeam" type="text" class="w3-bar-item w3-input w3-border">
+            </div>
+        <div class="w3-bar w3-light-grey">
+            <h4>Opponent Club</h4>
+            <input id="opponentClub" type="text" class="w3-bar-item w3-input w3-border">
+            </div> 
+        <div class="w3-bar w3-light-grey">
+            <h4>Game Location</h4>
+            <input id="gameLocation" type="text" class="w3-bar-item w3-input w3-border" >
+                </div>
+        <div class="w3-bar w3-light-grey">
+            <h4>Game Field</h4>
+            <input id="gameField" type="text" class="w3-bar-item w3-input w3-border" >
+            </div> 
+        </div>
 
 <footer class="w3-container w3-theme w3-margin-top">
   <h4>Footer</h4>
@@ -140,10 +156,13 @@ document.getElementById("gameLocation").placeholder = userData.gameLocation;
 document.getElementById("gameField").placeholder = userData.gameField;
 document.getElementById("playerTeamHomeAway").placeholder = userData.playerTeamHomeAway;
 
-
-
 closeSidebar();
 showInGameTracking();
+// Dummy Data Delete
+successfulPassCount = 0;
+userData.user = "Test User";
+playerTrackingServer = "http://localhost:3978";
+// playerTrackingServer = "http://playerTrackingLogging.azurewebsites.net";
 
 function openSidebar() {
     document.getElementById("mySidebar").style.display = "block";
@@ -151,46 +170,113 @@ function openSidebar() {
 function closeSidebar() {
     document.getElementById("mySidebar").style.display = "none";
 }
-function showInGameTracking() {
+function hideAllInputContainers() {
     document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("inGameTracking").style.display = "block";
+    document.getElementById("inGameTracking").style.display = "none";
     document.getElementById("setPiece").style.display = "none";
     document.getElementById("startStop").style.display = "none";
     document.getElementById("playerDetails").style.display = "none";
     document.getElementById("gameDetails").style.display = "none";
+};
+function showInGameTracking() {
+    hideAllInputContainers();
+    document.getElementById("inGameTracking").style.display = "block";
 }
 function showSetPiece() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("inGameTracking").style.display = "none";
+    hideAllInputContainers()
     document.getElementById("setPiece").style.display = "block";
-    document.getElementById("startStop").style.display = "none";
-    document.getElementById("playerDetails").style.display = "none";
-    document.getElementById("gameDetails").style.display = "none";
 }
 function showStartStop() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("inGameTracking").style.display = "none";
-    document.getElementById("setPiece").style.display = "none";
+    hideAllInputContainers();
     document.getElementById("startStop").style.display = "block";
-    document.getElementById("playerDetails").style.display = "none";
-    document.getElementById("gameDetails").style.display = "none";
 }
 function showPlayerDetails() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("inGameTracking").style.display = "none";
-    document.getElementById("setPiece").style.display = "none";
-    document.getElementById("startStop").style.display = "none";
+    hideAllInputContainers();
     document.getElementById("playerDetails").style.display = "block";
-    document.getElementById("gameDetails").style.display = "none";
 }
 function showGameDetails() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("inGameTracking").style.display = "none";
-    document.getElementById("setPiece").style.display = "none";
-    document.getElementById("startStop").style.display = "none";
-    document.getElementById("playerDetails").style.display = "none";
+    hideAllInputContainers();
     document.getElementById("gameDetails").style.display = "block";
 }
+
+function postStatusUpdate (status, buttonID, buttonText) {
+    console.log('postStatusUpdate called ' + status + ":" + buttonID + ":"+buttonText);
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        // console.log(this.responseText, this.responseText.startsWith("successfulPass", 1));
+        if (this.readyState == 4 && this.status == 200 && this.responseText.startsWith(status,1)) {
+            document.getElementById(buttonID).value = buttonText + ':' + this.responseText.split(':')[1];
+            }
+        };
+    xhttp.open("GET", playerTrackingServer + "?user=" + userData.user + "&status=" + status);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded", "Access-Control-Allow-Origin: http://localhost");
+    xhttp.send();
+};
+
+
+function successfulPass() {
+    console.log('successfulPass clicked')
+    postStatusUpdate('successfullPass','successfulPassButton', 'Successful');
+}
+function attemptedPass() {
+    console.log('attemptedPass clicked')
+    postStatusUpdate('attemptedPass','attemptedPassButton', 'Attempted');
+}
+function successfulTackle() {
+    console.log('successfulTackle clicked')
+}
+function attemptedTackle() {
+    console.log('attemptedTackle clicked')
+}
+function successfulDribble() {
+    console.log('successfulDribble clicked')
+}
+function attemptedDribble() {
+    console.log('attemptedDribble clicked')
+}
+function shotOnFrame() {
+    console.log('shotOnFrame clicked')
+}
+function shotOffFrame() {
+    console.log('shotOffFrame clicked')
+}
+function goal() {
+    console.log('goal clicked')
+}
+function assist() {
+    console.log('assist clicked')
+}
+function freeKick() {
+    console.log('freeKick clicked')
+}
+function corner() {
+    console.log('corner clicked')
+}
+function penaltyScored() {
+    console.log('penaltyScored clicked')
+}
+function penaltyMissed() {
+    console.log('penaltyMissed clicked')
+}
+function fouled() {
+    console.log('fouled clicked')
+}
+function foulCommitted() {
+    console.log('foulCommitted clicked')
+}
+function substitutedIn() {
+    console.log('substitutedIn clicked')
+}
+function substitutedOut() {
+    console.log('substitutedOut clicked')
+}
+function kickOff() {
+    console.log('kickOff clicked')
+}
+function finalWhistle() {
+    console.log('finalWhistle clicked')
+}
+
 </script>
 
 </body>
