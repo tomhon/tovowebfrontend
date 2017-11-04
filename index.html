@@ -16,6 +16,7 @@
 <a onclick="showStartStop()" class="w3-bar-item w3-button" href="#">Start/Stop</a>
 <a onclick="showPlayerDetails()" class="w3-bar-item w3-button" href="#">Player Details</a>
 <a onclick="showGameDetails()" class="w3-bar-item w3-button" href="#">Game Details</a>
+<a onclick="showMaintenanceDetails()" class="w3-bar-item w3-button" href="#">Maintenance</a>
 </nav>
 
 <header class="w3-bar w3-card w3-theme">
@@ -67,18 +68,24 @@
 <div class="w3-container" id="setPiece">
         <div class="w3-cell-row">
                 <h4>Set Piece</h4>
-                    <input type="button" class="w3-button w3-black" value="Free Kick" onclick="freeKick()">
-                    <input type="button" class="w3-button w3-black" value="Corner" onclick="corner()">
+                    <input type="button" class="w3-button w3-black" value="Free Kick" 
+                        id="freeKickButton" onclick="postStatusUpdate('freeKick','freeKickButton', 'Free Kick');">
+                    <input type="button" class="w3-button w3-black" value="Corner" 
+                        id="cornerButton" onclick="postStatusUpdate('corner','cornerButton', 'Corner');">                      
         </div>  
         <div class="w3-cell-row">
                 <h4>Penalty</h4>
-                    <input type="button" class="w3-button w3-black" value="Scored" onclick="penaltyScored()">
-                    <input type="button" class="w3-button w3-black" value="Missed" onclick="penaltyMissed()">
+                    <input type="button" class="w3-button w3-black" value="Scored" 
+                        id="penaltyScoredButton" onclick="postStatusUpdate('penaltyScored','penaltyScoredButton', 'Scored');">  
+                    <input type="button" class="w3-button w3-black" value="Missed" 
+                        id="penaltyMissedButton" onclick="postStatusUpdate('penaltyMissed','penaltyMissedButton', 'Missed');">  
         </div> 
         <div class="w3-cell-row">
                 <h4>Fouls</h4>
-                    <input type="button" class="w3-button w3-black" value="Fouled" onclick="fouled()">
-                    <input type="button" class="w3-button w3-black" value="Committed Foul" onclick="foulCommitted()">
+                    <input type="button" class="w3-button w3-black" value="Fouled" 
+                        id="fouledButton" onclick="postStatusUpdate('fouled','fouledButton', 'Fouled');">
+                    <input type="button" class="w3-button w3-black" value="Committed Foul" 
+                        id="committedFoulButton" onclick="postStatusUpdate('committedFoul','committedFoulButton', 'Committed Foul');">
         </div> 
     </div>
 
@@ -86,20 +93,26 @@
 <div class="w3-container" id="startStop">
         <div class="w3-cell-row">
                 <h4>Substitution</h4>
-                    <input type="button" class="w3-button w3-black" value="In" onclick="substitutedIn()">
-                    <input type="button" class="w3-button w3-black" value="Out" onclick="substitutedOut()">
+                    <input type="button" class="w3-button w3-black" value="In" 
+                        id="substitutedInButton" onclick="postStatusUpdate('substitutedIn','substitutedInButton', 'Substituted In');">
+                    <input type="button" class="w3-button w3-black" value="Out" 
+                        id="substitutedOutButton" onclick="postStatusUpdate('substitutedOut','substitutedOutButton', 'Substituted Out');">
         </div>  
         <div class="w3-cell-row">
                 <h4>Whistle</h4>
-                    <input type="button" class="w3-button w3-black" value="Kick Off" onclick="kickOff()">
-                    <input type="button" class="w3-button w3-black" value="Final Whistle" onclick="finalWhistle()">
+                    <input type="button" class="w3-button w3-black" value="Kick Off" 
+                        id="kickOffButton" onclick="postStatusUpdate('kickOff','kickOffButton', 'Kick Off');">
+                    <input type="button" class="w3-button w3-black" value="Final Whistle" 
+                        id="finalWhistleButton" onclick="postStatusUpdate('finalWhistle','finalWhistleButton', 'Final Whistle');">
         </div> 
     </div>
 <!-- Input Player Details -->
 <div class="w3-container" id="playerDetails">
         <div class="w3-bar w3-light-grey">
             <h4>Player Name</h4>
-            <input id="playerName" type="text" class="w3-bar-item w3-input w3-border">
+            <input id="playerName" type="text" class="w3-bar-item w3-input w3-border"
+            id="playerNameText" onchange="debugInput('playerName','playerNameText', 'Player Name');">
+            <!-- id="playerNameText" onchange="postStatusUpdate('playerName','playerNameText', 'Player Name');"> -->
             </div>
         <div class="w3-bar w3-light-grey">
             <h4>Player Number</h4>
@@ -112,7 +125,7 @@
         <div class="w3-bar w3-light-grey">
             <h4>Player Club</h4>
             <input id="playerClub" type="text" class="w3-bar-item w3-input w3-border" >
-            </div> 
+            </div>  
     </div>
 
 <!-- Input Game Details -->
@@ -139,143 +152,33 @@
             </div> 
         </div>
 
+<!-- bottons for New Game and New Player -->
+<div class="w3-container" id="maintenance">
+    <div class="w3-cell-row">
+            <h4>Maintenance</h4>
+                <input type="button" class="w3-button w3-black" value="New Game" 
+                    id="newGameButton" onclick="postStatusUpdate('newGame','newGameButton', 'New Game');">
+                <input type="button" class="w3-button w3-black" value="New Player" 
+                    id="newPlayerButton" onclick="postStatusUpdate('newPlayer','newPlayerButton', 'New Player');">
+    </div>  
+</div>
+
 <footer class="w3-container w3-theme w3-margin-top">
   <h4>Footer</h4>
 </footer>
 
+
+<script src="postStatusUpdate.js"></script>
+<script src="containerDisplay.js"></script>
+<script src="updateElapsedTime.js"></script>
+<script src="controller.js"></script>
 <script>
-var userData = {playerName: "Name..", playerNumber: "Number..", playerTeam: "Team..", playerClub: "Club..",
-    opponentTeam: "Team..", opponentClub: "Club..", gameLocation: "Location..", gameField: "Field..", playerTeamHomeAway: "Home.." };
-document.getElementById("playerName").placeholder = userData.playerName;
-document.getElementById("playerNumber").placeholder = userData.playerNumber;
-document.getElementById("playerTeam").placeholder = userData.playerTeam;
-document.getElementById("playerClub").placeholder = userData.playerClub;
-document.getElementById("opponentTeam").placeholder = userData.opponentTeam;
-document.getElementById("opponentClub").placeholder = userData.opponentClub;
-document.getElementById("gameLocation").placeholder = userData.gameLocation;
-document.getElementById("gameField").placeholder = userData.gameField;
-document.getElementById("playerTeamHomeAway").placeholder = userData.playerTeamHomeAway;
-
-closeSidebar();
-showInGameTracking();
-// Dummy Data Delete
-successfulPassCount = 0;
-userData.user = "Test User";
-playerTrackingServer = "http://localhost:3978";
-// playerTrackingServer = "http://playerTrackingLogging.azurewebsites.net";
-
-function openSidebar() {
-    document.getElementById("mySidebar").style.display = "block";
-}
-function closeSidebar() {
-    document.getElementById("mySidebar").style.display = "none";
-}
-function hideAllInputContainers() {
-    document.getElementById("mySidebar").style.display = "none";
-    document.getElementById("inGameTracking").style.display = "none";
-    document.getElementById("setPiece").style.display = "none";
-    document.getElementById("startStop").style.display = "none";
-    document.getElementById("playerDetails").style.display = "none";
-    document.getElementById("gameDetails").style.display = "none";
-};
-function showInGameTracking() {
-    hideAllInputContainers();
-    document.getElementById("inGameTracking").style.display = "block";
-}
-function showSetPiece() {
-    hideAllInputContainers()
-    document.getElementById("setPiece").style.display = "block";
-}
-function showStartStop() {
-    hideAllInputContainers();
-    document.getElementById("startStop").style.display = "block";
-}
-function showPlayerDetails() {
-    hideAllInputContainers();
-    document.getElementById("playerDetails").style.display = "block";
-}
-function showGameDetails() {
-    hideAllInputContainers();
-    document.getElementById("gameDetails").style.display = "block";
-}
-
-function postStatusUpdate (status, buttonID, buttonText) {
-    console.log('postStatusUpdate called ' + status + ":" + buttonID + ":"+buttonText);
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        // console.log(this.responseText, this.responseText.startsWith("successfulPass", 1));
-        if (this.readyState == 4 && this.status == 200 && this.responseText.startsWith(status,1)) {
-            document.getElementById(buttonID).value = buttonText + ':' + this.responseText.split(':')[1];
-            }
-        };
-    xhttp.open("GET", playerTrackingServer + "?user=" + userData.user + "&status=" + status);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded", "Access-Control-Allow-Origin: http://localhost");
-    xhttp.send();
-};
-
-
-function successfulPass() {
-    console.log('successfulPass clicked')
-    postStatusUpdate('successfullPass','successfulPassButton', 'Successful');
-}
-function attemptedPass() {
-    console.log('attemptedPass clicked')
-    postStatusUpdate('attemptedPass','attemptedPassButton', 'Attempted');
-}
-function successfulTackle() {
-    console.log('successfulTackle clicked')
-}
-function attemptedTackle() {
-    console.log('attemptedTackle clicked')
-}
-function successfulDribble() {
-    console.log('successfulDribble clicked')
-}
-function attemptedDribble() {
-    console.log('attemptedDribble clicked')
-}
-function shotOnFrame() {
-    console.log('shotOnFrame clicked')
-}
-function shotOffFrame() {
-    console.log('shotOffFrame clicked')
-}
-function goal() {
-    console.log('goal clicked')
-}
-function assist() {
-    console.log('assist clicked')
-}
-function freeKick() {
-    console.log('freeKick clicked')
-}
-function corner() {
-    console.log('corner clicked')
-}
-function penaltyScored() {
-    console.log('penaltyScored clicked')
-}
-function penaltyMissed() {
-    console.log('penaltyMissed clicked')
-}
-function fouled() {
-    console.log('fouled clicked')
-}
-function foulCommitted() {
-    console.log('foulCommitted clicked')
-}
-function substitutedIn() {
-    console.log('substitutedIn clicked')
-}
-function substitutedOut() {
-    console.log('substitutedOut clicked')
-}
-function kickOff() {
-    console.log('kickOff clicked')
-}
-function finalWhistle() {
-    console.log('finalWhistle clicked')
-}
+    function debugInput (status, buttonID, buttonText) {
+        console.log('status:' + status);
+        console.log('buttonId:' + buttonID);
+        console.log('buttonText:' + buttonText);
+        console.log(document.getElementById("buttonID").text);
+    }
 
 </script>
 

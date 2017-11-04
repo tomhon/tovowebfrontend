@@ -9,17 +9,3 @@ server.get('/', restify.serveStatic({
     directory: __dirname,
     default: '/index.html',
    }));
-
-
-
-// server.get('/', function (req, res, next) {
-//     res.send(helloWorld());
-//     next();
-// });
-
-// function helloWorld () {
-//     console.log('hello world called');
-//     return ({
-//        'Some random text': 'OK'
-//         });
-//     }
