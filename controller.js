@@ -11,6 +11,22 @@ document.getElementById("gameLocation").placeholder = userData.gameLocation;
 document.getElementById("gameField").placeholder = userData.gameField;
 document.getElementById("playerTeamHomeAway").placeholder = userData.playerTeamHomeAway;
 
+
+function newPlayer(session) {
+    session.userData.playerName = null;
+    session.userData.playerNumber = null;
+    session.userData.playerTeam = null;
+    session.userData.playerClub = null;
+}
+
+function newGame(session) {
+    session.userData.opponentTeam = null;
+    session.userData.opponentClub = null;
+    session.userData.gameLocation = null;
+    session.userData.gameField = null;
+    session.userData.playerTeamHomeAway = null;
+}
+
 closeSidebar();
 showInGameTracking();
 // Dummy Data Delete
